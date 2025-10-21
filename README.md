@@ -38,7 +38,7 @@ src/
 ├── state.rs        - Stable memory state management
 ├── transaction.rs  - Transaction storage (StoredTxV1)
 ├── operations.rs   - Transfer, mint, burn operations
-├── allowances.rs   - ICRC-2 approve/transfer_from
+├── allowances.rs   - ICRC-151 approve/transfer_from
 ├── queries.rs      - Balance and metadata queries
 └── validation.rs   - Input validation and deduplication
 ```
@@ -125,7 +125,7 @@ dfx canister call icrc151 mint_tokens '(
 - **Timeline at 10 TPS**: 3+ years before archiving needed
 - **Recommendation**: Implement archiving at 50% memory usage (300 GB)
 
-## Standards Compliance
+## Following other standards' practices
 
 - ✅ ICRC-1: Basic transfer operations
 - ✅ ICRC-2: Approve and transfer_from
