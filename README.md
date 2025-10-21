@@ -8,8 +8,8 @@ ICRC-151 is a multi-token ledger that allows a single canister to manage multipl
 
 **Key Features:**
 - Multiple tokens in a single ledger
-- ICRC-1 compatible transfer operations
-- ICRC-2 compatible approve/transfer_from operations
+- ICRC-1-like transfer operations
+- ICRC-2-like approve/transfer_from operations
 - Persistent storage using IC stable memory
 - Controller-only token creation and minting
 - Complete transaction history
