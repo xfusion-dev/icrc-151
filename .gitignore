@@ -1,0 +1,36 @@
+# Rust
+/target
+Cargo.lock
+*.pdb
+
+# DFX
+.dfx/
+.vessel/
+.env
+src/declarations/
+
+# IDE and editor files
+.ide/
+.claude/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Build artifacts
+*.wasm
+*.wasm.gz
+

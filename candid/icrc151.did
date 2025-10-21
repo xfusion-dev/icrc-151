@@ -1,0 +1,141 @@
+type Account = record { owner : principal; subaccount : opt blob };
+type Allowance = record {
+  owner : Account;
+  allowance : nat;
+  expires_at : opt nat64;
+  spender : Account;
+};
+type ApproveError = variant {
+  GenericError : record { message : text; error_code : nat };
+  TemporarilyUnavailable;
+  Duplicate : record { duplicate_of : nat64 };
+  BadFee : record { expected_fee : nat };
+  AllowanceChanged : record { current_allowance : nat };
+  CreatedInFuture : record { ledger_time : nat64 };
+  TooOld;
+  Expired : record { ledger_time : nat64 };
+  InsufficientFunds : record { balance : nat };
+};
+type ApproveResult = variant { Ok : nat64; Err : ApproveError };
+type CanisterInfo = record {
+  controller : text;
+  name : text;
+  global_tx_count : nat64;
+  version : text;
+  transaction_count : nat64;
+};
+type Icrc151ApproveArgs = record {
+  fee : opt nat;
+  token_id : blob;
+  memo : opt blob;
+  from_subaccount : opt blob;
+  created_at_time : opt nat64;
+  amount : nat;
+  expected_allowance : opt nat;
+  expires_at : opt nat64;
+  spender : Account;
+};
+type Icrc151TransferArgs = record {
+  to : Account;
+  fee : opt nat;
+  token_id : blob;
+  memo : opt blob;
+  from_subaccount : opt blob;
+  created_at_time : opt nat64;
+  amount : nat;
+};
+type Icrc151TransferFromArgs = record {
+  to : Account;
+  fee : opt nat;
+  spender_subaccount : opt blob;
+  token_id : blob;
+  from : Account;
+  memo : opt blob;
+  created_at_time : opt nat64;
+  amount : nat;
+};
+type QueryError = variant {
+  InvalidInput : text;
+  TokenNotFound;
+  InternalError : text;
+};
+type Result = variant { Ok : nat64; Err : text };
+type Result_1 = variant { Ok : blob; Err : text };
+type Result_2 = variant { Ok : nat; Err : QueryError };
+type Result_3 = variant { Ok : Allowance; Err : QueryError };
+type Result_4 = variant { Ok : TokenMetadata; Err : QueryError };
+type Result_5 = variant { Ok : vec StoredTxV1; Err : QueryError };
+type Result_6 = variant { Ok; Err : text };
+type Result_7 = variant { Ok : nat64; Err : QueryError };
+type StoredTxV1 = record {
+  op : nat8;
+  fee : blob;
+  flags : nat8;
+  token_id : blob;
+  memo : blob;
+  spender_key : blob;
+  to_key : blob;
+  _reserved : blob;
+  timestamp : blob;
+  from_key : blob;
+  amount : blob;
+};
+type TokenMetadata = record {
+  fee : nat;
+  decimals : nat8;
+  logo : opt text;
+  name : text;
+  description : opt text;
+  total_supply : nat;
+  symbol : text;
+};
+type TokenBalance = record { token_id : blob; balance : nat };
+type StorageStats = record {
+  transaction_log_size : nat64;
+  dedup_map_size : nat64;
+  allowance_expiry_size : nat64;
+  extended_memos_size : nat64;
+  holder_counts_size : nat64;
+  token_count : nat64;
+  estimated_memory_bytes : nat64;
+};
+type TransferError = variant {
+  GenericError : record { message : text; error_code : nat };
+  TemporarilyUnavailable;
+  BadBurn : record { min_burn_amount : nat };
+  Duplicate : record { duplicate_of : nat64 };
+  BadFee : record { expected_fee : nat };
+  CreatedInFuture : record { ledger_time : nat64 };
+  TooOld;
+  InsufficientFunds : record { balance : nat };
+};
+type TransferResult = variant { Ok : nat64; Err : TransferError };
+service : () -> {
+  burn_tokens : (blob, nat, opt blob) -> (Result);
+  burn_tokens_from : (blob, Account, nat, opt blob) -> (Result);
+  create_token : (text, text, nat8, opt nat, opt nat, opt text, opt text) -> (
+      Result_1,
+    );
+  get_allowance : (blob, Account, Account) -> (Result_2) query;
+  get_allowance_details : (blob, Account, Account) -> (Result_3) query;
+  get_balance : (blob, Account) -> (Result_2) query;
+  get_info : () -> (CanisterInfo) query;
+  get_token_metadata : (blob) -> (Result_4) query;
+  get_total_supply : (blob) -> (Result_2) query;
+  get_holder_count : (blob) -> (Result_7) query;
+  get_transaction_count : () -> (nat64) query;
+  get_transactions : (opt blob, opt nat64, opt nat64) -> (Result_5) query;
+  list_tokens : () -> (vec blob) query;
+  get_balances_for : (principal, opt blob) -> (vec TokenBalance) query;
+  get_storage_stats : () -> (StorageStats) query;
+  health_check : () -> (text) query;
+  icrc151_approve : (Icrc151ApproveArgs) -> (ApproveResult);
+  icrc151_transfer : (Icrc151TransferArgs) -> (TransferResult);
+  icrc151_transfer_from : (Icrc151TransferFromArgs) -> (TransferResult);
+  mint_tokens : (blob, Account, nat, opt blob) -> (Result);
+  set_controller : (principal) -> (Result_6);
+  add_controller : (principal) -> (Result_6);
+  remove_controller : (principal) -> (Result_6);
+  list_controllers : () -> (vec principal) query;
+  set_token_fee : (blob, nat) -> (Result_6);
+}

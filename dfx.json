@@ -1,0 +1,31 @@
+{
+  "canisters": {
+    "icrc151": {
+      "type": "rust",
+      "package": "icrc151",
+      "candid": "candid/icrc151.did",
+      "build": [
+        "cargo build --target wasm32-unknown-unknown --release --package icrc151"
+      ],
+      "wasm": "target/wasm32-unknown-unknown/release/icrc151.wasm",
+      "declarations": {
+        "output": "src/declarations/icrc151",
+        "node_compatibility": true
+      }
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
