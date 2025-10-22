@@ -7,7 +7,7 @@ Detailed workflows for all ledger operations.
 ### Flow
 
 ```
-User → icrc151_transfer() → Validate → Update Balances → Record Tx → Return TxId
+User → transfer() → Validate → Update Balances → Record Tx → Return TxId
 ```
 
 ### Steps
@@ -119,7 +119,7 @@ Controller → burn_tokens() → Check Auth → Update Balance → Record Tx →
 ### Flow
 
 ```
-User → icrc151_approve() → Validate → Update Allowance → Record Tx → Return TxId
+User → approve() → Validate → Update Allowance → Record Tx → Return TxId
 ```
 
 ### Steps
@@ -160,7 +160,7 @@ User → icrc151_approve() → Validate → Update Allowance → Record Tx → R
 ### Flow
 
 ```
-Spender → icrc151_transfer_from() → Validate → Check Allowance → Update Balances → Update Allowance → Record Tx → Return TxId
+Spender → transfer_from() → Validate → Check Allowance → Update Balances → Update Allowance → Record Tx → Return TxId
 ```
 
 ### Steps

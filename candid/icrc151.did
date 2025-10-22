@@ -129,9 +129,9 @@ service : () -> {
   get_balances_for : (principal, opt blob) -> (vec TokenBalance) query;
   get_storage_stats : () -> (StorageStats) query;
   health_check : () -> (text) query;
-  icrc151_approve : (Icrc151ApproveArgs) -> (ApproveResult);
-  icrc151_transfer : (Icrc151TransferArgs) -> (TransferResult);
-  icrc151_transfer_from : (Icrc151TransferFromArgs) -> (TransferResult);
+  approve : (Icrc151ApproveArgs) -> (ApproveResult);
+  transfer : (Icrc151TransferArgs) -> (TransferResult);
+  transfer_from : (Icrc151TransferFromArgs) -> (TransferResult);
   mint_tokens : (blob, Account, nat, opt blob) -> (Result);
   set_controller : (principal) -> (Result_6);
   add_controller : (principal) -> (Result_6);

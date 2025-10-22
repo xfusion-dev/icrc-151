@@ -295,12 +295,12 @@ dfx canister call icrc151 list_controllers '()'
 
 ## ICRC-1 Transfer Operations
 
-### icrc151_transfer
+### transfer
 
 Transfers tokens from caller to another account.
 
 ```candid
-icrc151_transfer : (Icrc151TransferArgs) -> TransferResult
+transfer : (Icrc151TransferArgs) -> TransferResult
 
 type Icrc151TransferArgs = record {
   token_id: blob;
@@ -340,7 +340,7 @@ type TransferError = variant {
 
 **Example:**
 ```bash
-dfx canister call icrc151 icrc151_transfer '(
+dfx canister call icrc151 transfer '(
   record {
     token_id = blob "\ab\cd\ef...";
     from_subaccount = null;
@@ -360,12 +360,12 @@ dfx canister call icrc151 icrc151_transfer '(
 
 ## ICRC-2 Allowance Operations
 
-### icrc151_approve
+### approve
 
 Approves a spender to transfer tokens on behalf of caller.
 
 ```candid
-icrc151_approve : (Icrc151ApproveArgs) -> ApproveResult
+approve : (Icrc151ApproveArgs) -> ApproveResult
 
 type Icrc151ApproveArgs = record {
   token_id: blob;
@@ -399,7 +399,7 @@ type ApproveError = variant {
 
 **Example:**
 ```bash
-dfx canister call icrc151 icrc151_approve '(
+dfx canister call icrc151 approve '(
   record {
     token_id = blob "\ab\cd\ef...";
     spender = record {
@@ -419,12 +419,12 @@ dfx canister call icrc151 icrc151_approve '(
 
 ---
 
-### icrc151_transfer_from
+### transfer_from
 
 Transfers tokens using an allowance.
 
 ```candid
-icrc151_transfer_from : (Icrc151TransferFromArgs) -> TransferResult
+transfer_from : (Icrc151TransferFromArgs) -> TransferResult
 
 type Icrc151TransferFromArgs = record {
   token_id: blob;
@@ -440,7 +440,7 @@ type Icrc151TransferFromArgs = record {
 
 **Example:**
 ```bash
-dfx canister call icrc151 icrc151_transfer_from '(
+dfx canister call icrc151 transfer_from '(
   record {
     token_id = blob "\ab\cd\ef...";
     spender_subaccount = null;
@@ -943,7 +943,7 @@ dfx canister call icrc151 get_balance "(
 ### User: Transfer Tokens
 
 ```bash
-dfx canister call icrc151 icrc151_transfer "(
+dfx canister call icrc151 transfer "(
   record {
     token_id = blob \"$TOKEN_ID\";
     from_subaccount = null;
