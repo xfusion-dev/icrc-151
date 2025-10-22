@@ -68,7 +68,7 @@ pub use crate::operations::{TransferResult, TransferError};
 
 
 #[ic_cdk::update]
-pub fn icrc151_approve(args: Icrc151ApproveArgs) -> ApproveResult {
+pub fn approve(args: Icrc151ApproveArgs) -> ApproveResult {
     let caller = ic_cdk::caller();
     
 
@@ -276,7 +276,7 @@ fn approve_internal(
 
 
 #[ic_cdk::update]
-pub fn icrc151_transfer_from(args: Icrc151TransferFromArgs) -> TransferResult {
+pub fn transfer_from(args: Icrc151TransferFromArgs) -> TransferResult {
     let caller = ic_cdk::caller();
     
 

@@ -263,7 +263,7 @@ dfx canister call icrc151 mint_tokens '(
 )'
 
 # Then transfer
-dfx canister call icrc151 icrc151_transfer '(
+dfx canister call icrc151 transfer '(
   record {
     token_id = blob "\ab\cd\ef...";
     from_subaccount = null;
@@ -377,7 +377,7 @@ dfx canister --network ic deposit-cycles 1000000000000 icrc151
 dfx canister --network ic id icrc151 > canister_id.txt
 
 # Save to .env
-echo "ICRC151_CANISTER_ID=$(dfx canister --network ic id icrc151)" >> .env
+echo "CANISTER_ID=$(dfx canister --network ic id icrc151)" >> .env
 ```
 
 ### Backup Controller Keys

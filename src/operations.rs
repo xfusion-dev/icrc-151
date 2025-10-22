@@ -49,7 +49,7 @@ pub struct Icrc151TransferArgs {
 
 
 #[ic_cdk::update]
-pub fn icrc151_transfer(args: Icrc151TransferArgs) -> TransferResult {
+pub fn transfer(args: Icrc151TransferArgs) -> TransferResult {
     let caller = ic_cdk::caller();
     
 
